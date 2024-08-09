@@ -82,6 +82,28 @@ This dataset is publicly available via an Amazon Simple Storage Service (Amazon 
 
 The New York City Taxi and Limousine Commission (NYC TLC) Yellow Trips dataset is a comprehensive collection of data that pertains to yellow taxi trips in New York City. This dataset is particularly valuable for a variety of analyses, including urban planning, transportation studies, and economic research.
 
+| Field Name |	Description |
+| --- | --- |
+| VendorID 	| A code indicating the TPEP provider that provided the record. 1= Creative Mobile Technologies, LLC; 2= VeriFone Inc. | 
+| tpep_pickup_datetime | 	The date and time when the meter was engaged. | 
+| tpep_dropoff_datetime 	| The date and time when the meter was disengaged. |
+| Passenger_count |	The number of passengers in the vehicle. This is a driver-entered value. | 
+| Trip_distance 	| The elapsed trip distance in miles reported by the taximeter. |
+| PULocationID 	| TLC Taxi Zone in which the taximeter was engaged | 
+| DOLocationID 	| TLC Taxi Zone in which the taximeter was disengaged | 
+| RateCodeID |	The final rate code in effect at the end of the trip. 1= Standard rate ; 2=JFK , 3=Newark , 4=Nassau or Westchester, 5=Negotiated fare, 6=Group ride | 
+| Store_and_fwd_flag |	This flag indicates whether the trip record was held in vehicle memory before sending to the vendor, aka “store and forward,” because the vehicle did not have a connection to the server. Y= store and forward trip, N= not a store and forward trip |
+| Payment_type |	A numeric code signifying how the passenger paid for the trip. 1= Credit card; 2= Cash; 3= No charge; 4= Dispute; 5= Unknown; 6= Voided trip |
+| Fare_amount |	The time-and-distance fare calculated by the meter. | 
+| Extra |	Miscellaneous extras and surcharges. Currently, this only includes the $0.50 and $1 rush hour and overnight charges. |
+| MTA_tax 	| $0.50 MTA tax that is automatically triggered based on the metered rate in use. |
+| Improvement_surcharge |	$0.30 improvement surcharge assessed trips at the flag drop. The improvement surcharge began being levied in 2015. | 
+| Tip_amount | This field is automatically populated for credit card tips. Cash tips are not included. | 
+| Tolls_amount |	Total amount of all tolls paid in trip. |
+| Total_amount | The total amount charged to passengers. Does not include cash tips. |
+| Congestion_Surcharge |	Total amount collected in trip for NYS congestion surcharge. |
+| Airport_fee |	$1.25 for pick up only at LaGuardia and John |
+
 # 5. Approach
 
 The steps in this process are as follows:
@@ -103,9 +125,11 @@ The following tools and services are used:
  - Services: Amazon Redshift, AWS Glue, AWS Step Function, VPC, S3, Secrets Manager, QuickSight, SNS.
  - Libraries: boto3, sys.
 
-## i. AWS redshift: A Scalable Data Warehouse
+## i. AWS Redshift: A Scalable Data Warehouse
 
-![image](https://github.com/user-attachments/assets/656ea9c2-a2c5-4fbd-ab72-a8a52148b8a9)
+<p align="center" width="100%">
+    <img width="20%" src="https://github.com/user-attachments/assets/a5fb8f01-8778-461e-ae1d-ecc020db72a6](https://github.com/user-attachments/assets/656ea9c2-a2c5-4fbd-ab72-a8a52148b8a9"> 
+</p>
 
 Amazon Redshift is a powerful cloud-based data warehouse solution offered by AWS. It's designed to handle massive amounts of data efficiently and quickly, making it ideal for complex data analysis and business intelligence.
 
@@ -125,7 +149,11 @@ Key strengths of Redshift include:
 In essence, Redshift simplifies the process of storing, processing, and analyzing vast datasets, providing valuable insights to drive business decisions.
 
 ## ii. AWS Glue: A Serverless ETL Service
-![image](https://github.com/user-attachments/assets/1eec9d63-2d36-4739-a291-b8268e2a6c21) 
+
+<p align="center" width="100%">
+    <img width="20%" src="https://github.com/user-attachments/assets/1eec9d63-2d36-4739-a291-b8268e2a6c21"> 
+</p>
+
 
 AWS Glue is a cloud-based service designed to streamline the process of extracting, transforming, and loading (ETL) data. By automating infrastructure management and providing a centralized data catalog, Glue simplifies data preparation for analytics.
 
@@ -147,7 +175,9 @@ Key features of AWS Glue include:
 
 ## iii. AWS Stepfunctions: Orchestrating Complex Workflows
 
-![image](https://github.com/user-attachments/assets/2c825ffa-417d-4097-9470-e2c5c4027b91)
+<p align="center" width="100%">
+    <img width="20%" src="https://github.com/user-attachments/assets/2c825ffa-417d-4097-9470-e2c5c4027b91"> 
+</p>
 
 AWS Step Functions is a cloud-based service for managing complex workflows across distributed applications and microservices. It simplifies the process by providing a visual interface to design and monitor workflows without the need for managing underlying infrastructure.
 
@@ -165,7 +195,9 @@ Key features of AWS Step Functions include:
    
 ## iv. AWS S3: Scalable and Durable Object Storage
 
-![image](https://github.com/user-attachments/assets/08f91dd4-e2f0-4ee2-b752-43068ce5c822)
+<p align="center" width="100%">
+    <img width="20%" src="https://github.com/user-attachments/assets/08f91dd4-e2f0-4ee2-b752-43068ce5c822"> 
+</p>
 
 Amazon S3 is a highly scalable and durable cloud storage service for storing and protecting various data types. It offers industry-leading performance and security, making it suitable for a wide range of use cases, from websites and mobile applications to big data analytics and archiving.
 
@@ -180,8 +212,9 @@ Key features of Amazon S3 include:
 
 ## v. AWS VPC: Creating Isolated Network Environments
 
-![image](https://github.com/user-attachments/assets/53c92063-e974-4863-a8a8-44c1c872c637)
-
+<p align="center" width="100%">
+    <img width="20%" src="https://github.com/user-attachments/assets/53c92063-e974-4863-a8a8-44c1c872c637"> 
+</p>
 
 Amazon Virtual Private Cloud (VPC) allows you to create isolated network environments within the AWS cloud. You have full control over your virtual network, including IP address ranges, subnets, and network gateways.
 
@@ -197,11 +230,9 @@ Key features of Amazon VPC include:
 
 ## vi. AWS Secrets Manager: Secure Secret Management
 
- ![image](https://github.com/user-attachments/assets/a5fb8f01-8778-461e-ae1d-ecc020db72a6)
-
-<div style="display: flex; justify-content: center;">
-  <img src="https://github.com/user-attachments/assets/a5fb8f01-8778-461e-ae1d-ecc020db72a6" alt="Centered image" />
-</div>
+<p align="center" width="100%">
+    <img width="20%" src="https://github.com/user-attachments/assets/a5fb8f01-8778-461e-ae1d-ecc020db72a6"> 
+</p>
 
 AWS Secrets Manager simplifies the management and protection of sensitive information like database credentials, API keys, and other secrets. It automates secret rotation and provides centralized control over secret access.
 
@@ -215,8 +246,9 @@ Key features of AWS Secrets Manager include:
 
 ## vii. AWS SNS: Reliable Pub/Sub Messaging
 
-![image](https://github.com/user-attachments/assets/94f74a16-d0c7-4b25-9999-42fcd7c1e0bf)
-
+<p align="center" width="100%">
+    <img width="20%" src="https://github.com/user-attachments/assets/94f74a16-d0c7-4b25-9999-42fcd7c1e0bf"> 
+</p>
 
 Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service for decoupling distributed systems and applications. It enables you to send messages or notifications to various subscribers, including other AWS services and external endpoints.
 
@@ -231,7 +263,9 @@ Key features of AWS SNS include:
 
 ## viii. AWS QuickSight: Business Intelligence and Data Visualization
 
-![image](https://github.com/user-attachments/assets/2ca4ecf9-d06c-4062-bcdb-be1ffb8889cb)
+<p align="center" width="100%">
+    <img width="20%" src="https://github.com/user-attachments/assets/2ca4ecf9-d06c-4062-bcdb-be1ffb8889cb"> 
+</p>
 
 Amazon QuickSight is a cloud-based business intelligence service for creating interactive dashboards, visualizations, and performing data analysis. It simplifies data exploration and insights generation.
 
@@ -266,7 +300,55 @@ First, choose a region near to the S3 bucktes if you are using a public S3 or ch
 
 ## 8.1 Create VPC
 
- i.	Navigate to services > Networking and Content Delivery > VPC.
+ 1.	Navigate to services > Networking and Content Delivery > VPC.
+ 2.	Create a VPC “myCCProjectVPC” in us-east-1 region with IPV4 CIDR range: 10.31.0.0/16
+ 3.	Create the following subnets:
+    -	Public Subnet A - 10.31.0.0/20
+    -	Private Subnet A - 10.31.16.0/20: Follow similar steps.
+    -	Public Subnet B - 10.31.32.0/20: Select a different availability zone.
+    -	Private Subnet B - 10.31.48.0/20
+ 4. Now Navigate to Internet gateway and create Internet Gateway-> “myprojectinternetgateway” and assign it to Public subnets A & B
+ 5. Navigate to NAT gateway and allocate a NAT Gateway-> “myprojectNAT” and allocate an Elastic IP address.
+ 6.Naviagte to route tables and create 4 route tables, one for each subnet.
+	 1. First, select your project VPC.
+  2. 2 Public subnets (A&B) will have Internet Gateway referred if traffic is routed for 0.0.0.0/0
+     - Please do not forget to attach the internet gateway to the VPC.
+     -  Now, provide the internet gateway for public route.
+     -  Now, you can see the routes destinations. Next, is to associate subnet with the route table.
+     -  Follow, the same steps for route for public subnet B
+  3. 2 Private subnets(A&B) will have NAT Gateway referred if traffic is routed for 0.0.0.0/0.
+     - Follow same steps as that in public routes but use NAT gateway.
+     - Now, the final route table is created.
+ 7. Security groups and ACL:
+     - Use the default ones created.
+ 8. Navigate to end points and create the following:
+    1. S3 endpoint
+       - Select from the services.
+       - For policy, allow full access or can change according to requirements.
+       - And attach routes tables to the S3 endpoint according to the requirements.
+    2. AWS manager endpoint
+       - Follow the same steps as above and give the service as secret manager.
+
+## 8.2  
+
+         
+         
+
+
+
+
+ 
+
+Next, is to associate subnet with the route table.
+
+
+ 
+
+b.	2 Public subnets (A&B) will have Internet Gateway referred if traffic is routed for 0.0.0.0/0
+
+
+
+ 
 
 # 10. Conclusion
 
