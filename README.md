@@ -199,8 +199,8 @@ Key features of Amazon VPC include:
 
  ![image](https://github.com/user-attachments/assets/a5fb8f01-8778-461e-ae1d-ecc020db72a6)
 
-<div style="text-align: center;">
- ![image](https://github.com/user-attachments/assets/a5fb8f01-8778-461e-ae1d-ecc020db72a6)
+<div style="display: flex; justify-content: center;">
+  <img src="https://github.com/user-attachments/assets/a5fb8f01-8778-461e-ae1d-ecc020db72a6" alt="Centered image" />
 </div>
 
 AWS Secrets Manager simplifies the management and protection of sensitive information like database credentials, API keys, and other secrets. It automates secret rotation and provides centralized control over secret access.
